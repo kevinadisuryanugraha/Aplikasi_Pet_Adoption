@@ -17,67 +17,7 @@ if (isset($_GET['id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail Kucing</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-image: url(image.webp);
-            margin: 0;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            color: #333;
-        }
-
-        .detail-container {
-            margin-bottom: 20px;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: #fafafa;
-        }
-
-        img {
-            max-width: 50%;
-            border-radius: 5px;
-        }
-
-        p {
-            line-height: 1.6;
-            color: #555;
-        }
-
-        a {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 15px;
-            background-color: #5cb85c;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-
-        a:hover {
-            background-color: #4cae4c;
-        }
-
-        .back-link {
-            background-color: #007bff;
-        }
-
-        .back-link:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <link rel="stylesheet" href="css/detail.css">
 </head>
 
 <body>
