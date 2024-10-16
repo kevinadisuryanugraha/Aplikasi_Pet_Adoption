@@ -2,11 +2,6 @@
 session_start();
 require_once 'functions.php';
 
-if (!isset($_SESSION['user_id'])) {
-    header("Location: index.php");
-    exit();
-}
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_kucing = $_POST['id_kucing'];
     $foto = $_FILES['foto'];
@@ -14,11 +9,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $usia = $_POST['usia'];
     $alamat = $_POST['alamat'];
     $deskripsi = $_POST['deskripsi'];
+    $created_by = $_POST['created_by'];
+    $nomor_hp = $_POST['nomor_hp'];
 
-    $result = edit_kucing($id_kucing, $foto, $jenis_kucing, $usia, $alamat, $deskripsi);
+    $result = edit_kucing($id_kucing, $foto, $jenis_kucing, $usia, $alamat, $deskripsi, $created_by, $nomor_hp);
     if ($result) {
         echo "<script>alert('Kucing Berhasil Diperbarui');
-        window.location='halaman_utama.php';
+        window.location='index.php';
         </script>";
     } else {
         echo "Terjadi kesalahan saat memperbarui kucing.";
@@ -150,7 +147,7 @@ if (isset($_GET['id'])) {
             <input type="hidden" name="id_kucing" value="<?php echo $kucing['id_kucing']; ?>">
             <label for="foto">Foto Kucing:</label>
             <div class="custom-file-input">
-                <input type="file" id="foto" name="foto" value="<?php echo $kucing['foto']; ?>">
+                <input type="file" id="foto" name="foto" value="<?php echo $kucing['foto']; ?>" required autofocus>
             </div>
 
             <label for="jenis_kucing">Jenis Kucing:</label>
@@ -165,9 +162,15 @@ if (isset($_GET['id'])) {
             <label for="deskripsi">Deskripsi:</label>
             <textarea id="deskripsi" name="deskripsi" rows="4" required><?php echo $kucing['deskripsi']; ?></textarea>
 
+            <label for="created_by">Dibuat oleh:</label>
+            <input type="text" id="created_by" name="created_by" value="<?php echo $kucing['created_by']; ?>" required>
+
+            <label for="nomor_hp">Masukkan Nomor HandPhone:</label>
+            <input type="text" id="nomor_hp" name="nomor_hp" value="<?php echo $kucing['nomor_hp']; ?>" required>
+
             <input type="submit" value="Perbarui">
         </form>
-        <a href="halaman_utama.php">Kembali ke Daftar Kucing</a>
+        <a href="index.php">Kembali ke Daftar Kucing</a>
     </div>
 </body>
 

@@ -1,27 +1,11 @@
 <?php
 require_once 'db.php';
 
-function tambah_user($nama, $email, $nomor)
+function tambah_kucing($foto, $jenis_kucing, $usia, $alamat, $deskripsi, $created_by, $nomor_hp)
 {
     $db = connect_db();
-    $query = "INSERT INTO users (nama, email, nomor) VALUES ('$nama', '$email', '$nomor')";
-    $result = $db->exec($query);
 
-    return $result;
-}
 
-function get_user_by_email($email)
-{
-    $db = connect_db();
-    $query = "SELECT * FROM users WHERE email = '$email'";
-    $result = $db->querySingle($query, true);
-
-    return $result;
-}
-
-function tambah_kucing($foto, $jenis_kucing, $usia, $alamat, $deskripsi, $created_by)
-{
-    $db = connect_db();
     $target_dir = "uploads/kucing/";
 
     $file_name = basename($foto["name"]);
@@ -47,8 +31,9 @@ function tambah_kucing($foto, $jenis_kucing, $usia, $alamat, $deskripsi, $create
     }
 
     if (move_uploaded_file($foto["tmp_name"], $target_file)) {
-        $query = "INSERT INTO adopsi (foto, jenis_kucing, usia, alamat, deskripsi, created_by) 
-                  VALUES ('$file_name', '$jenis_kucing', $usia, '$alamat', '$deskripsi', $created_by)";
+
+        $query = "INSERT INTO adopsi (foto, jenis_kucing, usia, alamat, deskripsi, created_by, nomor_hp) 
+                  VALUES ('$file_name', '$jenis_kucing', $usia, '$alamat', '$deskripsi', '$created_by', '$nomor_hp')";
         $result = $db->exec($query);
         return $result;
     } else {
@@ -71,10 +56,10 @@ function get_all_kucing()
     return $kucing_list;
 }
 
-function ambil_kucing_by_user($user_id)
+function ambil_kucing_by_id($id_kucing)
 {
     $db = connect_db();
-    $query = "SELECT * FROM adopsi WHERE created_by = $user_id";
+    $query = "SELECT * FROM adopsi WHERE created_by = $id_kucing";
     $result = $db->query($query);
 
     $kucing_list = [];
@@ -85,7 +70,7 @@ function ambil_kucing_by_user($user_id)
     return $kucing_list;
 }
 
-function edit_kucing($id_kucing, $foto, $jenis_kucing, $usia, $alamat, $deskripsi)
+function edit_kucing($id_kucing, $foto, $jenis_kucing, $usia, $alamat, $deskripsi, $created_by, $nomor_hp)
 {
     $db = connect_db();
     $id_kucing = (int)$id_kucing;
@@ -116,7 +101,7 @@ function edit_kucing($id_kucing, $foto, $jenis_kucing, $usia, $alamat, $deskrips
         }
     }
 
-    $query = "UPDATE adopsi SET foto = '$foto', jenis_kucing = '$jenis_kucing', usia = $usia, alamat = '$alamat', deskripsi = '$deskripsi' WHERE id_kucing = $id_kucing";
+    $query = "UPDATE adopsi SET foto = '$foto', jenis_kucing = '$jenis_kucing', usia = $usia, alamat = '$alamat', deskripsi = '$deskripsi', created_by = '$created_by', nomor_hp = '$nomor_hp' WHERE id_kucing = $id_kucing";
     $result = $db->exec($query);
     return $result;
 }
