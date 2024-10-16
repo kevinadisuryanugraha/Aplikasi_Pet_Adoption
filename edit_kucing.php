@@ -77,7 +77,7 @@ if (isset($_GET['id'])) {
         input[type="file"],
         input[type="text"],
         input[type="number"],
-        input[type="date"],
+        input[type="tel"],
         textarea {
             width: 100%;
             padding: 10px;
@@ -88,8 +88,10 @@ if (isset($_GET['id'])) {
             transition: border 0.3s ease-in-out;
         }
 
+        input[type="file"]:focus,
         input[type="text"]:focus,
         input[type="number"]:focus,
+        input[type="tel"]:focus,
         textarea:focus {
             border-color: #5a67d8;
             outline: none;
@@ -165,8 +167,8 @@ if (isset($_GET['id'])) {
             <label for="created_by">Dibuat oleh:</label>
             <input type="text" id="created_by" name="created_by" value="<?php echo $kucing['created_by']; ?>" required>
 
-            <label for="nomor_hp">Masukkan Nomor HandPhone:</label>
-            <input type="text" id="nomor_hp" name="nomor_hp" value="<?php echo $kucing['nomor_hp']; ?>" required>
+            <label for="nomor_hp">Masukkan Nomor HandPhone, Gunakan +62:</label>
+            <input type="tel" id="nomor_hp" name="nomor_hp" value="<?php echo $kucing['nomor_hp']; ?>" required>
 
             <input type="submit" value="Perbarui">
         </form>

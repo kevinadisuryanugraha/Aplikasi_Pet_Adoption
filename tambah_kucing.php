@@ -155,7 +155,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="text" id="created_by" name="created_by" required>
 
             <label for="nomor_hp">Masukkan Nomor HandPhone:</label>
-            <input type="text" id="nomor_hp" name="nomor_hp" required>
+            <input type="number" id="nomor_hp" name="nomor_hp" required>
 
             <input type="submit" value="Simpan">
         </form>

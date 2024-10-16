@@ -5,7 +5,6 @@ function tambah_kucing($foto, $jenis_kucing, $usia, $alamat, $deskripsi, $create
 {
     $db = connect_db();
 
-
     $target_dir = "uploads/kucing/";
 
     $file_name = basename($foto["name"]);
